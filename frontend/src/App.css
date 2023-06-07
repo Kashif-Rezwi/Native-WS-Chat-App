@@ -2,37 +2,70 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.chatBox {
+  min-height: 300px;
+  min-width: 300px;
+  width: 300px;
+  height: 300px;
+  margin: auto;
+  border: 1px solid lightgray;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.sendMsgBox {
+  min-width: 300px;
+  width: 300px;
+  margin: 10px auto;
+  display: grid;
+  grid-template-columns: 80% 20%;
+  border: 1px solid lightgray;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.msgBox {
   display: flex;
-  flex-direction: column;
+  margin: 10px;
+  box-sizing: border-box;
+  display: inline-block;
+  clear: both;
+}
+
+.msgBox p:first-child {
+  padding: 8px 15px;
+  max-width: 200px;
+  width: max-content;
+  background-color: lightgray;
+  margin: 0px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.sendMsgBox input {
+  padding: 10px;
+  outline: none;
+  border: none;
+}
+
+.sendMsgBox button {
+  border: none;
+}
+
+.onlineBox {
+  min-width: 300px;
+  width: 300px;
+  margin: 10px auto;
+  border: 1px solid lightgray;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 10px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.onlineBox p {
+  border: 1px solid lightgray;
+  padding: 5px 10px;
+  margin: 0px;
 }
