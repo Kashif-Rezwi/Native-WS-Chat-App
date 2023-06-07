@@ -15,14 +15,21 @@ const server = app.listen(8080, () => {
 
 const wss = new WebSocket.Server({ server });
 
-wss.on("connection", (ws) => {
+wss.on("connection", (client) => {
   console.log("New WebSocket Connection.");
 
-  ws.on("message", (msg) => {
-    console.log("Received", msg);
+  client.on("message", (msg) => {
+    // parsing the buffer data
+    const messageData = JSON.parse(msg);
+    console.log("Received", messageData);
+
+    // sends message to all the clients except himself
+    [...wss.clients]
+      .filter((c) => c !== client)
+      .forEach((el) => el.send(JSON.stringify(messageData))); // stringify the parse data
   });
 
-  ws.on("close", () => {
+  client.on("close", () => {
     console.log("WebSocket Connection Closed.");
   });
 });
