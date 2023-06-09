@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import { findUnique } from "../components/findUnique";
 
-const ws = new WebSocket("ws://localhost:8080");
+// const ws = new WebSocket("ws://localhost:8080");
+const ws = new WebSocket("ws://ws-chat-server-one.onrender.com/");
 
 export const Home = () => {
   const [chat, setChat] = useState([]);
