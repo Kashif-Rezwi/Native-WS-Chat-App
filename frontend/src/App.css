@@ -45,7 +45,7 @@ section {
   max-height: 200px;
   margin: 0px;
   display: flex;
-  flex-wrap: wrap;
+  gap: 5px;
   justify-content: flex-start;
   align-items: center;
   overflow: scroll;
@@ -54,7 +54,7 @@ section {
 
 .onlineBox p {
   width: 100%;
-  padding: 5px 0px;
+  padding: 0px;
   margin: 0px;
   border-radius: 5px;
   color: #2bae66;
