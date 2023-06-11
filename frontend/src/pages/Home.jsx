@@ -48,14 +48,16 @@ export const Home = () => {
 
           return msg;
         });
-        ws.send(updatedChat);
+        ws.current.send(JSON.stringify(updatedChat));
 
         ws.current.close(); // Clean up WebSocket connection on component unmount
       }
     };
   }, []);
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
     const id = uuidv4();
     const clientDetails = { client: text, id, active: true };
     if (!user) {
@@ -142,7 +144,7 @@ export const Home = () => {
           </div>
         )}
 
-        <div className="sendMsgBox">
+        <form onSubmit={handleSubmit} className="sendMsgBox">
           <input
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -153,10 +155,8 @@ export const Home = () => {
                 : "Type your message here..."
             }
           />
-          <button onClick={(e) => handleSubmit(e)}>
-            {!user ? "Enter" : "Send"}
-          </button>
-        </div>
+          <button type="submit">{!user ? "Enter" : "Send"}</button>
+        </form>
       </div>
     </section>
   );
