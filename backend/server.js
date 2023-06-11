@@ -1,5 +1,5 @@
 const express = require("express");
-const WebSocket = require("ws");
+const { WebSocketServer } = require("ws");
 const cors = require("cors");
 
 const app = express();
@@ -13,7 +13,7 @@ const server = app.listen(8080, () => {
   console.log("Server started on port 8080");
 });
 
-const wss = new WebSocket.Server({ server });
+const wss = new WebSocketServer({ server });
 
 wss.on("connection", (client) => {
   console.log("New WebSocket Connection.");
