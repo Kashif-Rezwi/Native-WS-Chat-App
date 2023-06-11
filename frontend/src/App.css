@@ -1,28 +1,74 @@
 * {
   box-sizing: border-box;
+  -ms-overflow-style: none;
 }
-.App {
-  text-align: center;
+::-webkit-scrollbar {
+  display: none;
 }
 
-.chatBox {
-  min-height: 300px;
-  min-width: 300px;
-  width: 300px;
-  height: 300px;
+body {
+  background-image: url("../public/Images/background.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainBox {
+  z-index: 10;
+  height: 90%;
+  max-height: 700px;
+  padding: 15px;
+  width: 350px;
+  min-width: 250px;
   margin: auto;
-  border: 1px solid lightgray;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border-radius: 10px;
+  backdrop-filter: blur(50px);
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  transition: 0.3s;
+}
+
+.onlineBox {
+  width: 100%;
+  max-height: 200px;
+  margin: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 10px;
+  align-items: center;
+  overflow: scroll;
   box-sizing: border-box;
 }
 
-.sendMsgBox {
-  min-width: 300px;
-  width: 300px;
+.onlineBox p {
+  width: 100%;
+  background: linear-gradient(25deg, #0a0a0b, #2bae66);
+  padding: 10px 15px;
+  margin: 5px 0px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+}
+
+.chatBox {
+  padding: 0px;
   margin: 10px auto;
-  display: grid;
-  grid-template-columns: 80% 20%;
-  border: 1px solid lightgray;
+  height: 450px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .msgBox {
@@ -32,42 +78,112 @@
   clear: both;
 }
 
-.msgBox p:first-child {
+.msgBox > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.msgBox > div > p:first-child {
   padding: 8px 15px;
   max-width: 200px;
-  width: max-content;
-  background-color: lightgray;
+  color: white;
   margin: 0px;
   font-weight: 500;
   font-size: 14px;
+  border-radius: 5px;
+  text-align: justify;
+}
+
+.msgBox > div > p:last-child {
+  text-transform: uppercase;
+  font-size: 10px;
+  margin: 5px 0px;
+}
+
+.sendMsgBox {
+  width: 100%;
+  margin: 5px 0px;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  border-radius: 5px;
 }
 
 .sendMsgBox input {
+  background: transparent;
   padding: 10px;
   outline: none;
+  font-size: 16px;
+  font-weight: 500;
   border: none;
+  color: #fff;
+}
+
+.sendMsgBox input::placeholder {
+  color: #ffffff;
 }
 
 .sendMsgBox button {
+  border-radius: 5px;
   border: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  background-image: linear-gradient(
+    to right,
+    #000000 0%,
+    #434343 51%,
+    #000000 100%
+  );
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  display: block;
+  cursor: pointer;
 }
 
-.onlineBox {
-  min-width: 300px;
-  width: 300px;
-  margin: 10px auto;
-  border: 1px solid lightgray;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 10px;
-  align-items: center;
-  padding: 10px;
-  box-sizing: border-box;
+.sendMsgBox button:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
 }
 
-.onlineBox p {
-  border: 1px solid lightgray;
-  padding: 5px 10px;
-  margin: 0px;
+.joiningMsg h1 {
+  font-size: 40px;
+  color: #ffffff;
+}
+
+/* responsive css */
+
+@media all and (max-width: 415px) {
+  section {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .mainBox {
+    border-radius: 0px;
+    height: 100% !important;
+    max-height: 100%;
+    width: 100% !important;
+    min-width: 100%;
+    transition: 0.3s;
+  }
+
+  .onlineBox p {
+    padding: 15px;
+  }
+
+  .sendMsgBox button {
+    padding: 15px;
+  }
+
+  .chatBox {
+    height: 70%;
+  }
+
+  .onlineBox {
+    height: 20%;
+  }
 }

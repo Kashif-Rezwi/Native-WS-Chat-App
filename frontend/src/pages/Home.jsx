@@ -65,7 +65,8 @@ export const Home = () => {
         setChat((prevChat) => [...prevChat, clientDetails]);
       }
     } else {
-      const message = { text, ...user };
+      const timestamp = new Date().toLocaleString().split(",")[1];
+      const message = { text, timestamp, ...user };
       if (ws.current && ws.current.readyState === WebSocket.OPEN) {
         ws.current.send(JSON.stringify(message));
         setChat((prevChat) => [...prevChat, message]);
@@ -75,74 +76,88 @@ export const Home = () => {
   };
 
   return (
-    <div>
-      <h1>Wellcome to the ws chat app.</h1>
+    <section>
+      <div className="mainBox">
+        {chat.length > 0 ? (
+          <ScrollToBottom className="onlineBox">
+            {clients.map((client, i) => {
+              return <p key={i}>{client} join the chat room.</p>;
+            })}
+          </ScrollToBottom>
+        ) : (
+          <div className="onlineBox">
+            <p>No online user is found!</p>
+          </div>
+        )}
 
-      {chat.length > 0 ? (
-        <div className="onlineBox">
-          {clients.map((client, i) => {
-            return <p key={i}>{client}</p>;
-          })}
-        </div>
-      ) : (
-        <div className="onlineBox">
-          <p>No online users found!</p>
-        </div>
-      )}
+        {user ? (
+          <ScrollToBottom className="chatBox">
+            {chat.map((msg, i) => {
+              if (!msg.text) {
+                return;
+              }
 
-      {user && (
-        <ScrollToBottom className="chatBox">
-          {chat.map((msg, i) => {
-            if (!msg.text) {
-              return;
-            }
-
-            return (
-              <div
-                key={i}
-                style={{
-                  float: user.id === msg.id ? "right" : "left",
-                }}
-                className="msgBox"
-              >
-                <p
+              return (
+                <div
+                  key={i}
                   style={{
-                    width: "100%",
-                    textAlign: user.id === msg.id ? "right" : "left",
+                    float: user.id === msg.id ? "right" : "left",
                   }}
+                  className="msgBox"
                 >
-                  {msg.text}
-                </p>
-                {user !== msg.user && (
-                  <p
+                  <div
                     style={{
-                      margin: "0px",
-                      fontSize: "12px",
-                      float: "left",
+                      alignItems:
+                        user.id === msg.id ? "flex-end" : "flex-start",
                     }}
                   >
-                    by {msg.client}
-                  </p>
-                )}
-              </div>
-            );
-          })}
-        </ScrollToBottom>
-      )}
+                    <p
+                      style={{
+                        backgroundColor:
+                          user.id === msg.id ? "#1762ea" : "#7b9acc",
+                      }}
+                    >
+                      {msg.text}
+                    </p>
+                    {user !== msg.user && (
+                      <p
+                        style={{
+                          color: user.id === msg.id ? "#6a9fff" : "#7b9acc",
+                          textAlign: user.id === msg.id ? "right" : "left",
+                        }}
+                      >
+                        {user.id === msg.id
+                          ? `${msg.client} ${msg.timestamp}`
+                          : `${msg.timestamp} ${msg.client}`}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </ScrollToBottom>
+        ) : (
+          <div className="joiningMsg">
+            <h1>Please enter your username to join the chat room.</h1>
+          </div>
+        )}
 
-      <div className="sendMsgBox">
-        <input
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          type="text"
-          placeholder={
-            !user ? "Enter your username here..." : "Type your message here..."
-          }
-        />
-        <button onClick={(e) => handleSubmit(e)}>
-          {!user ? "Enter" : "Send"}
-        </button>
+        <div className="sendMsgBox">
+          <input
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            type="text"
+            placeholder={
+              !user
+                ? "Enter your username here..."
+                : "Type your message here..."
+            }
+          />
+          <button onClick={(e) => handleSubmit(e)}>
+            {!user ? "Enter" : "Send"}
+          </button>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
