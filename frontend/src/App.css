@@ -47,7 +47,6 @@ section {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 10px;
   align-items: center;
   overflow: scroll;
   box-sizing: border-box;
