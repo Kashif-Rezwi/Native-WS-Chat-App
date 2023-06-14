@@ -54,6 +54,7 @@ section {
   border-radius: 5px;
   color: #2bae66;
   font-weight: 500;
+  text-transform: capitalize;
 }
 
 .chatBox {
