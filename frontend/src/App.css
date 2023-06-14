@@ -59,7 +59,7 @@ section {
 
 .chatBox {
   padding: 0px;
-  margin: 10px auto;
+  margin: auto;
   height: 80%;
   width: 100%;
   box-sizing: border-box;
@@ -70,7 +70,7 @@ section {
 }
 
 .innerChatBox {
-  min-height: 450px;
+  min-height: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -191,15 +191,13 @@ section {
     transition: 0.3s;
   }
 
-  .sendMsgBox button {
-    padding: 15px;
-  }
-
   .chatBox {
     height: 80%;
   }
 
   .onlineBox {
+    position: sticky;
+    top: 0px;
     height: 10%;
   }
 }
