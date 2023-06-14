@@ -62,19 +62,35 @@ section {
   height: 500px;
   width: 100%;
   box-sizing: border-box;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.innerChatBox {
+  min-height: 500px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* border: 2px solid black; */
 }
 
 .msgBox {
-  margin: 10px;
+  width: 100%;
+  margin: 10px 0px;
   box-sizing: border-box;
   display: inline-block;
   clear: both;
+  /* border: 1px solid blue; */
 }
 
 .msgBox > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* border: 1px solid green; */
 }
 
 .msgBox > div > p:first-child {
