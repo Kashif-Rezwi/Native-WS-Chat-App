@@ -157,7 +157,9 @@ export const Home = () => {
                 : "Type your message here..."
             }
           />
-          <button type="submit">{!user ? "Enter" : "Send"}</button>
+          <button disabled={text.trim().length === 0} type="submit">
+            {!user ? "Enter" : "Send"}
+          </button>
         </form>
       </div>
     </section>
