@@ -94,49 +94,51 @@ export const Home = () => {
 
         {user ? (
           <ScrollToBottom className="chatBox">
-            {chat.map((msg, i) => {
-              if (!msg.text) {
-                return;
-              }
+            <div className="innerChatBox">
+              {chat.map((msg, i) => {
+                if (!msg.text) {
+                  return;
+                }
 
-              return (
-                <div
-                  key={i}
-                  style={{
-                    float: user.id === msg.id ? "right" : "left",
-                  }}
-                  className="msgBox"
-                >
+                return (
                   <div
+                    key={i}
                     style={{
-                      alignItems:
-                        user.id === msg.id ? "flex-end" : "flex-start",
+                      float: user.id === msg.id ? "right" : "left",
                     }}
+                    className="msgBox"
                   >
-                    <p
+                    <div
                       style={{
-                        backgroundColor:
-                          user.id === msg.id ? "#1762ea" : "#7b9acc",
+                        alignItems:
+                          user.id === msg.id ? "flex-end" : "flex-start",
                       }}
                     >
-                      {msg.text}
-                    </p>
-                    {user !== msg.user && (
                       <p
                         style={{
-                          color: user.id === msg.id ? "#6a9fff" : "#7b9acc",
-                          textAlign: user.id === msg.id ? "right" : "left",
+                          backgroundColor:
+                            user.id === msg.id ? "#1762ea" : "#7b9acc",
                         }}
                       >
-                        {user.id === msg.id
-                          ? `${msg.client} ${msg.timestamp}`
-                          : `${msg.timestamp} ${msg.client}`}
+                        {msg.text}
                       </p>
-                    )}
+                      {user !== msg.user && (
+                        <p
+                          style={{
+                            color: user.id === msg.id ? "#6a9fff" : "#7b9acc",
+                            textAlign: user.id === msg.id ? "right" : "left",
+                          }}
+                        >
+                          {user.id === msg.id
+                            ? `${msg.client} ${msg.timestamp}`
+                            : `${msg.timestamp} ${msg.client}`}
+                        </p>
+                      )}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </ScrollToBottom>
         ) : (
           <div className="joiningMsg">
