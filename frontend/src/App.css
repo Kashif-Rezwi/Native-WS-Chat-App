@@ -189,6 +189,7 @@ section {
     width: 100% !important;
     min-width: 100%;
     transition: 0.3s;
+    overflow: hidden;
   }
 
   .chatBox {
