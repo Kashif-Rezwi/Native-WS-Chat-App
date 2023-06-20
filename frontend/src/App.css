@@ -191,10 +191,4 @@ section {
   .chatBox {
     height: 80%;
   }
-
-  .onlineBox {
-    position: sticky;
-    top: 0px;
-    height: 10%;
-  }
 }
